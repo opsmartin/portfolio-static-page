@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+
+/* Root Variables */
+:root {
+  --bg-color: #0f111a;
+  --text-color: #33ff66;
+  --accent-color: #00cc99;
+  --muted-color: #666;
+  --font-main: 'JetBrains Mono', monospace;
+  --font-size: 16px;
+  --line-height: 1.6;
+}
+
+/* Base Styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-main);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--accent-color);
+  transition: all 0.2s ease;
+}
+a:hover {
+  color: #fff;
+  border-bottom: 1px solid #fff;
+}
+
+h1, h2, h3, h4 {
+  font-weight: bold;
+  color: var(--accent-color);
+  margin: 1em 0 0.5em;
+  text-shadow: 0 0 5px var(--accent-color), 0 0 10px var(--accent-color);
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+code, pre {
+  background-color: #111318;
+  color: var(--accent-color);
+  padding: 0.3em 0.5em;
+  border-radius: 4px;
+  font-size: 0.95em;
+  overflow-x: auto;
+}
+
+pre {
+  display: block;
+  white-space: pre-wrap;
+}
+
+/* Layout */
+.container {
+  max-width: 900px;
+  margin: 2em auto;
+  padding: 0 1em;
+}
+
+section {
+  margin-bottom: 2em;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--muted-color);
+  margin: 2em 0;
+}
+
+/* Terminal Style Block */
+.terminal {
+  background-color: #0a0d13;
+  border: 1px solid #1e1e2e;
+  padding: 1em;
+  border-radius: 6px;
+  font-family: var(--font-main);
+  font-size: 0.95em;
+  color: var(--text-color);
+  line-height: 1.4;
+  overflow-x: auto;
+}
+
+.terminal .prompt {
+  color: var(--accent-color);
+}
+
+.terminal .command::before {
+  content: "# ";
+  color: var(--accent-color);
+}
+
+.terminal .output {
+  color: #bbb;
+}
+
+.flex-line {
+  display: flex;
+  gap: 20px; /* space between project name and description */
+  flex-wrap: wrap; /* so it wraps on small screens */
+}
+
+.project {
+  flex: 0 0 150px; /* fixed width for alignment */
+  font-weight: bold;
+}
+
+.desc {
+  flex: 1; /* takes the remaining space */
+}
+
+
+/* Set the SVG as a backdrop */
+.aphex-bg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 80vmin;
+    height: 80vmin;
+    /* transform: translate(-50%, -50%); */
+    fill: #00cc99;
+    opacity: 1;
+    /* z-index: -1;    Ensure it stays behind the content */
+    pointer-events: none;
+  }
+
+
+  .watermark-tiles {
+    position: fixed;
+    top:   0;
+    left:  0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.07; /* adjust overall transparency */
+
+    /* purple “paint” beneath the mask */
+    background-color: #6A0DAD;
+
+    /* use your SVG as a repeating alpha–mask */
+    -webkit-mask-image:    url("aphex.svg");
+    -webkit-mask-repeat:   repeat;          /* tile it */
+    -webkit-mask-size:     600px 600px;     /* tile dimensions */
+
+    mask-image:            url("aphex.svg");
+    mask-repeat:           repeat;
+    mask-size:             600px 600px;
+  }
