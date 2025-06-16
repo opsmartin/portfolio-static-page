@@ -1,0 +1,25 @@
+---
+layout: default
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
+
+<div class="blog-container">
+  <h1>Blog Posts</h1>
+  <div class="blog-posts">
+    {% for post in site.posts %}
+      <article class="blog-post-preview">
+        <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        <div class="post-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">
+            {{ post.date | date: "%B %d, %Y" }}
+          </time>
+        </div>
+        <div class="post-excerpt">
+          {{ post.excerpt | strip_html | truncatewords: 200 }}
+        </div>
+        <a href="{{ post.url | relative_url }}" class="read-more">Read More →</a>
+      </article>
+    {% endfor %}
+  </div>
+</div>

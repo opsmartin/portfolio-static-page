@@ -1,0 +1,48 @@
+title: opsmartin
+description: Infrastructure Engineer | Kubernetes Specialist | CI/CD & Cloud Expert
+baseurl: "" # leave empty if using custom domain
+url: "" # leave empty if using custom domain
+
+# Build settings
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title/
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Syntax highlighting
+highlighter: rouge
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git
+  - .github
+  - .jekyll-cache
+  - _site

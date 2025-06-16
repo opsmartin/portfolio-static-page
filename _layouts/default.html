@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}">
+</head>
+<body>
+  <div class="container">
+    <div class="watermark-tiles"></div>
+
+    <nav class="site-nav">
+      <a href="{{ '/' | relative_url }}">about_me</a>
+      <a href="{{ '/blog' | relative_url }}">blog</a>
+    </nav>
+
+    {{ content }}
+
+    <hr>
+
+    <footer>
+      <p>01010011 01001001 01000111 01010011 01000101 01000111 01010110</p>
+      <p>© {{ site.time | date: '%Y' }} opsmaster | reality reboot…</p>
+    </footer>
+  </div>
+</body>
+</html>

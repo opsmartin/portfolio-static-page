@@ -145,11 +145,12 @@ hr {
     background-color: #6A0DAD;
 
     /* use your SVG as a repeating alpha–mask */
-    -webkit-mask-image:    url("aphex.svg");
+    -webkit-mask-image:    url('aphex.svg');
+
     -webkit-mask-repeat:   repeat;          /* tile it */
     -webkit-mask-size:     600px 600px;     /* tile dimensions */
 
-    mask-image:            url("aphex.svg");
+    mask-image:            url('aphex.svg');
     mask-repeat:           repeat;
     mask-size:             600px 600px;
   }

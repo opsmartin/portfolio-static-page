@@ -1,0 +1,29 @@
+require:
+  - rubocop-jekyll
+
+inherit_mode:
+  merge:
+    - Exclude
+
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - '_site/**/*'
+    - '.jekyll-cache/**/*'
+    - 'Gemfile'
+    - 'Gemfile.lock'
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - '**/*.gemspec'
+    - 'Gemfile'
+    - 'Rakefile'
+    - '**/Rakefile'
+    - '**/lib/tasks/**/*'
+
+Layout/LineLength:
+  Max: 120
