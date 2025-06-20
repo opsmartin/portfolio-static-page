@@ -1,18 +1,24 @@
 ---
 layout: post
-title: "Lessons from deploying an LLM chatbot on a shoestring budget"
-date: 2025-06-16
-categories: [general]
+title: "Lessons from deploying on-premises LLM cost effectively"
+date: 2025-06-25
+categories:
+  - AI
+  - LLM
+  - On-Premises
+  - Infrastructure
+  - CD
+  - Cost-Optimization
 ---
 
-Developing an autoscaling GPU cluster for [M. Zilinec](https://linkedin.com/in/matus-zilinec)'s LLM powered parsers, one of the first of its kind to process the Czech language.
-
+Developing infrastructure for [M. Zilinec](https://linkedin.com/in/matus-zilinec)'s [on-prem LLM powered data extraction pipeline](https://pactus.ai/),
+one of the first of its kind to process the Czech language.
 
 ## Problem at hand
 
-- We needed to create infrastructure to support an LLM chatbot
+- We needed to create infrastructure to support an on-premises LLM document extraction pipeline
 - We didn't have any reliable bare metal GPU machine at hand
-- We needed to maintain low costs as much as possible - cloud GPU virtual machines get *EXPENSIVE*
+- We needed to maintain low costs as much as possible, as cloud GPU virtual machines can get *EXPENSIVE*
 
 ## Devising an architecture
 
