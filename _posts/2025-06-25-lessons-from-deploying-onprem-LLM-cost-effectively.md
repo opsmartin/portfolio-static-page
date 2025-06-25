@@ -135,7 +135,24 @@ The specs are **minimum** bandwidth and we already had the max advertised speed 
 
 ### Volume mount hacks
 
-[Loki's Wager](https://lokiwager.github.io/about/) posted a perfect blog tackling a similar problem by [mounting all big files as a read-only volumes in k8s](https://lokiwager.github.io/posts/reduce-image-size), then only boot up a minimal image such as Alpine.
+[Loki's Wager](https://lokiwager.github.io/about/) posted a perfect blog tackling a similar problem by [mounting all big files as a read-only volumes in k8s](https://lokiwager.github.io/posts/reduce-image-size), then only boot up a minimal image such as Alpine. Here is a snippet from their Dockerfile:
+
+```Dockerfile
+FROM builder as tmp
+
+RUN mkdir /data && mv /usr/local/cuda-11.8 /data/cuda-11.8 && \
+    mv /opt/nvidia /data/nvidia
+
+FROM ubuntu:22.04 as slim
+
+COPY --from=tmp /etc /etc
+COPY --from=tmp /usr /usr
+COPY --from=tmp /root /root
+COPY --from=tmp /var/cache /var/cache
+COPY --from=tmp /var/lib /var/lib
+COPY --from=tmp /run /run
+```
+
 This is nice and definitely works, but requires effort digging through parts of the image and re-mounting it correctly via Kubernetes `PersistentVolumes`.
 You also have to version each `PersistentVolume` if the files differ for each image.
 
@@ -153,9 +170,24 @@ The image pull gets noticably upon switching to the `Premium_LRS` disk tier. It 
 
 ### Deallocate vs Delete
 
+This is how our boot timeline looked up to this point:
+
+| Time   | Event                |
+|--------|----------------------|
+| 00:00  | start (user request) |
+| 00:15  | autoscaler adds pods |
+| 06:30  | azure adds node      |
+| 09:15  | worker image pulled  |
+
 Finally, we settled on detaching the VM hard drives and binding them back upon node launch.
 
-This doesn't work with the `Premium_LRS` disk tier. The initial launch of the nodes is therefore a lot slower. Fortunately, that didn't matter for our product experience, because re-attaching the disk with all images already downloaded, is very fast.
+This doesn't work with the `Premium_LRS` disk tier. The initial launch of the nodes is therefore a lot slower. Fortunately, that didn't matter for our product experience, because re-attaching the disk with all images already downloaded, is very fast:
+
+| Time   | Event                |
+|--------|----------------------|
+| 00:00  | start (user request) |
+| 00:15  | autoscaler adds pods |
+| 01:30  | azure adds node      |
 
 The re-mounted disk also contains all models, which were previously streamed from a bucket.
 
@@ -163,4 +195,4 @@ The cost is higher than in the *volume mount hack* method - Azure bills each det
 
 In k8s, the *detached* nodes never disappear from the nodes list, but are instead marked as `NotReady`.
 
-This got us down to **1 minute service ready speed** - from the initial user query to starting processing the workload - without incurring cloud costs for costly GPU virtual machines while the service is idle.
+This got us down to **1m30s service ready speed** - from the initial user query to starting processing the workload - without incurring cloud costs for costly GPU virtual machines while the service is idle.

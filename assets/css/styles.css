@@ -141,7 +141,7 @@ hr {
     pointer-events: none;
     opacity: 0.07; /* adjust overall transparency */
 
-    /* purple “paint” beneath the mask */
+    /* purple "paint" beneath the mask */
     background-color: #6A0DAD;
 
     /* use your SVG as a repeating alpha–mask */
@@ -154,3 +154,34 @@ hr {
     mask-repeat:           repeat;
     mask-size:             600px 600px;
   }
+
+/* Stylish tables for blog posts */
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2em 0;
+  background: #f9fafb;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.post-content th, .post-content td {
+  padding: 0.75em 1em;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.post-content th {
+  background: #f3f4f6;
+  color: #22223b;
+  font-weight: bold;
+  text-align: left;
+}
+
+.post-content tr:last-child td {
+  border-bottom: none;
+}
+
+.post-content tr:hover td {
+  background: #e0e7ff;
+}
