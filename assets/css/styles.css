@@ -160,7 +160,7 @@ hr {
   width: 100%;
   border-collapse: collapse;
   margin: 2em 0;
-  background: #f9fafb;
+  background: #181a22;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   border-radius: 8px;
   overflow: hidden;
@@ -168,12 +168,12 @@ hr {
 
 .post-content th, .post-content td {
   padding: 0.75em 1em;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #23242b;
 }
 
 .post-content th {
-  background: #f3f4f6;
-  color: #22223b;
+  background: #23242b;
+  color: #33ff66;
   font-weight: bold;
   text-align: left;
 }
@@ -183,5 +183,11 @@ hr {
 }
 
 .post-content tr:hover td {
-  background: #e0e7ff;
+  background: #23242b;
+}
+
+/* Code snippets inside blog posts */
+.post-content code, .post-content pre {
+  background-color: #181a22 !important;
+  color: #00cc99 !important;
 }
