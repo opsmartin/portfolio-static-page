@@ -2,6 +2,8 @@
 layout: post
 title: "Lessons from deploying on-premises LLM cost effectively"
 date: 2025-06-25
+image: /assets/images/preview001.jpg
+description: "How we designed autoscaling for cloud GPU clusters"
 categories:
   - AI
   - LLM

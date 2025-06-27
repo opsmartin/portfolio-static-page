@@ -1,7 +1,7 @@
 title: opsmartin
 description: Infrastructure Engineer | Kubernetes Specialist | CI/CD & Cloud Expert
 baseurl: "" # leave empty if using custom domain
-url: "" # leave empty if using custom domain
+url: "https://mtrx.run"
 
 # Build settings
 markdown: kramdown
